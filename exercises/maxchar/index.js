@@ -6,19 +6,14 @@
 // maxChar("apple 1231111") === "1"
 
 function maxChar(str) {
-    let arr = str.split('');
     let map = new Map();
 
-    for (char of arr) {
-        if (map.has(char)) {
-            map.set(char, map.get(char) + 1);
-        } else {
-            map.set(char, 1);
-        }
+    for (char of str) {
+        map.has(char) ? map.set(char, map.get(char) + 1) : map.set(char, 1);
     }
 
-    let maxVal = map.get(arr[0]);
-    let maxChar =  arr[0];
+    let maxVal = map.get(str[0]);
+    let maxChar =  str[0];
     map.forEach(function(val, key){
         if (val > maxVal) {
             maxChar = key;
