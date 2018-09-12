@@ -8,32 +8,49 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
+// Clever solution by sorting
 function anagrams(stringA, stringB) {
-    let objA = createHash(stringA.replace(/[^\w]/g, "").toLowerCase());
-    let objB = createHash(stringB.replace(/[^\w]/g, "").toLowerCase());
+    let cleanStringA = stringA.replace(/[^\w]/g, "").toLowerCase();
+    let cleanStringB = stringB.replace(/[^\w]/g, "").toLowerCase();
 
-    if (Object.keys(objA).length !== Object.keys(objB).length) {
-        return false;
-    }
+    cleanStringA = cleanStringA.split('').sort().join('');
+    cleanStringB = cleanStringB.split('').sort().join('');
 
-    for (key in objA) {
-        if (objA[key] !== objB[key]) {
-            return false;
-        }
-    }
+    return cleanStringA === cleanStringB;
 
-    return true;
 }
 
-function createHash(string) {
-    let hash = {};
+// Solution using Objects
 
-    for (char of string) {
-        hash[char] = hash[char] + 1 || 1;
-    }
+// function anagrams(stringA, stringB) {
+//     let objA = createHash(stringA.replace(/[^\w]/g, "").toLowerCase());
+//     let objB = createHash(stringB.replace(/[^\w]/g, "").toLowerCase());
 
-    return hash;
-}
+//     /**
+//      * NOTE: Pay Attention to Object.keys()
+//      */
+//     if (Object.keys(objA).length !== Object.keys(objB).length) {
+//         return false;
+//     }
+
+//     for (key in objA) {
+//         if (objA[key] !== objB[key]) {
+//             return false;
+//         }
+//     }
+
+//     return true;
+// }
+
+// function createHash(string) {
+//     let hash = {};
+
+//     for (char of string) {
+//         hash[char] = hash[char] + 1 || 1;
+//     }
+
+//     return hash;
+// }
 
 module.exports = anagrams;
 
