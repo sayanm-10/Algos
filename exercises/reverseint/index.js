@@ -10,22 +10,11 @@
 
 // Without using reverse helper
 function reverseInt(n) {
-    if (n === 0) {
-        return 0;
-    }
-
     let arrNum = n.toString().split('');
-    let trailing_zero = true;
     let reverse = '';
 
-    for (let i = arrNum.length - 1; i >= 0; --i) {
-        if (trailing_zero && arrNum[i] === '0') {
-            // do nothing
-            continue;
-        } else {
-            reverse += arrNum[i];
-            trailing_zero = false;
-        }
+    for (num of arrNum) {
+        reverse = num + reverse;
     }
 
     return parseInt(reverse) * Math.sign(n);
