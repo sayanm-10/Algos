@@ -9,18 +9,19 @@
 
 // solution using includes()
 
-function vowels(str) {
-    let counter = 0;
-    let vowels = ['a', 'e', 'i', 'o', 'u']; // can also string "aeiou"
+// function vowels(str) {
+//     let counter = 0;
+//     let vowels = ['a', 'e', 'i', 'o', 'u']; // can also string "aeiou"
 
-    for (char of str.toLowerCase()) {
-        if (vowels.includes(char)) {
-            counter++;
-        }
-    }
+//     for (char of str.toLowerCase()) {
+//         if (vowels.includes(char)) {
+//             counter++;
+//         }
+//     }
 
-    return counter;
-}
+//     return counter;
+// }
+
 
 // Solution using indexOf()
 
@@ -37,3 +38,11 @@ function vowels(str) {
 // }
 
 module.exports = vowels;
+
+// RegEx based solution
+
+function vowels(str) {
+    let matches = str.match(/[aeiou]/gi);
+
+    return matches ? matches.length : 0;
+}
