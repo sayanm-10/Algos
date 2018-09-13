@@ -20,7 +20,7 @@ function pyramid(n) {
     for (let i = 0; i < n; i++) {
         let print = '';
         for (let j = 0; j < 2*n - 1; j++) {
-            if (j === mid || (j <= mid + i && j >= mid - i)) {
+            if (j <= mid + i && j >= mid - i) {
                 print += '#';
             } else {
                 print += ' ';
@@ -32,3 +32,26 @@ function pyramid(n) {
 }
 
 module.exports = pyramid;
+
+// Recursive solution
+
+// function pyramid(n, row = 0, print = '') {
+//     if (row === n) {
+//         return;
+//     }
+
+//     if (print.length === 2*n - 1) {
+//         console.log(print);
+//         return pyramid(n, row + 1);
+//     }
+
+//     let mid = Math.floor((2*n - 1) / 2);
+
+//     if (print.length >= mid - row && print.length <= mid + row) {
+//         print += '#';
+//     } else {
+//         print += ' ';
+//     }
+
+//     pyramid(n, row, print);
+// }
