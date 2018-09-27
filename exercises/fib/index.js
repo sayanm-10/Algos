@@ -42,7 +42,7 @@ function fib(n) {
 }
 
 /**
- * * Build a memoizer
+ * * Build a memoize method
  * @param {*} func 
  */
 function memoize(func) {
