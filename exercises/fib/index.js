@@ -12,14 +12,10 @@
  * * Iterative Approach
  */
 function fib(n) {
-    if (n === 0) {
-        return 0;
+    if (n < 2) {
+        return n;
     }
 
-    if (n === 1) {
-        return 1;
-    }
-    
     let first = 0;
     let second = 1;
     let result;
@@ -34,3 +30,14 @@ function fib(n) {
 }
 
 module.exports = fib;
+
+/**
+ * * Recursive Approach
+ */
+// function fib(n) {
+//     if (n < 2) {
+//         return n;
+//     }
+
+//     return fib(n-1) + fib(n-2);
+// }
