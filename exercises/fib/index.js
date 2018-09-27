@@ -11,33 +11,56 @@
 /**
  * * Iterative Approach
  */
-function fib(n) {
-    if (n < 2) {
-        return n;
-    }
-
-    let first = 0;
-    let second = 1;
-    let result;
-
-    for (let i = 0; i < n - 1; i++) {
-        result = first + second;
-        first = second;
-        second = result;
-    }
-
-    return result;
-}
-
-module.exports = fib;
-
-/**
- * * Recursive Approach
- */
 // function fib(n) {
 //     if (n < 2) {
 //         return n;
 //     }
 
-//     return fib(n-1) + fib(n-2);
+//     let first = 0;
+//     let second = 1;
+//     let result;
+
+//     for (let i = 0; i < n - 1; i++) {
+//         result = first + second;
+//         first = second;
+//         second = result;
+//     }
+
+//     return result;
 // }
+
+
+/**
+ * * Recursive Approach
+ */
+function fib(n) {
+    if (n < 2) {
+        return n;
+    }
+    
+    return fib(n-1) + fib(n-2);
+}
+
+/**
+ * * Build a memoizer
+ * @param {*} func 
+ */
+function memoize(func) {
+    let cache = {};
+    
+    return function(...args) {
+        // if func was called with these arguements, return value from cache
+        if(cache[args]) {
+            return cache[args];
+        }
+        
+        const result = func.apply(this, args);
+        // store result of func call with these arguments in caches
+        cache[args] = result;
+        return result
+    };
+}
+
+fib = memoize(fib);
+
+module.exports = fib;
