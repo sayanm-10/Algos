@@ -164,6 +164,28 @@ class LinkedList {
         //     prev_node.next = new_node;
         // }
     }
+
+    forEach(fn) {
+        let node = this.head;
+        let index = 0;
+
+        if (!node) {
+            return;
+        }
+
+        
+        while (node) {
+            fn.apply(this, [node, index]);
+
+            // * All valid
+            // fn.call(this, node, index);
+            //fn.call(null, node, index);
+            //fn(node, index);
+            
+            node = node.next;
+            index++;
+        }
+    }
 }
 
 module.exports = { Node, LinkedList };
