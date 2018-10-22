@@ -35,13 +35,21 @@ function selectionSort(arr) {
     return arr;
 }
 
+// TODO: Fix insertion sort
 function insertionSort(arr) {
     let sorted = [arr[0]];
 
-    // for (let i = 1; i , arr.length; i++) {
-    //     if (arr[i])
-    // }
+    for (let i = 1; i < arr.length; i++) {
+        for (let j = 0; j < sorted.length; j++) {
+            if (arr[i] < arr[j]) {
+                sorted[j+1] = sorted[j];
+                sorted[j] = arr[i];
+                break;
+            }
+        }
+    }
 
+    return sorted;
 }
 
 function mergeSort(arr) {
@@ -49,9 +57,18 @@ function mergeSort(arr) {
 }
 
 function merge(left, right) {
+    let merged = [];
 
+    while (left.length && right.length) {
+        if (left[0] < right[0]) {
+            merged.push(left.shift());
+        } else {
+            merged.push(right.shift());
+        }
+    }
+
+    merged = [...merged, ...left, ...right];
+    return merged;
 }
 
-// selectionSort([100, -40, 500, -124, 0, 21, 7]);
-
-module.exports = { bubbleSort, selectionSort, mergeSort, insertionSort };
+module.exports = { bubbleSort, selectionSort, mergeSort, merge, insertionSort };
