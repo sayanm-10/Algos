@@ -3,7 +3,7 @@ const bubbleSort = S.bubbleSort;
 const selectionSort = S.selectionSort;
 const mergeSort = S.mergeSort;
 const merge = S.merge;
-const insertionSort = S.insertionSort;
+const quickSort = S.quickSort;
 
 function getArray() {
   return [100, -40, 500, -124, 0, 21, 7];
@@ -25,9 +25,9 @@ describe('Selection sort', () => {
   });
 });
 
-describe.skip('Insertion sort', () => {
-    test('Insertion sorts an array', () => {
-      expect(insertionSort(getArray())).toEqual(getSortedArray());
+describe('Quick sort', () => {
+    test('Quick sorts an array', () => {
+      expect(quickSort(getArray())).toEqual(getSortedArray());
     });
   });
 

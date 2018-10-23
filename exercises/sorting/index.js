@@ -53,7 +53,15 @@ function insertionSort(arr) {
 }
 
 function mergeSort(arr) {
+    if (arr.length === 1) {
+        return arr;
+    }
 
+    const mid = Math.floor(arr.length / 2);
+    const left = arr.slice(0, mid);
+    const right = arr.slice(mid);
+
+    return merge(mergeSort(left), mergeSort(right));
 }
 
 function merge(left, right) {
@@ -67,8 +75,42 @@ function merge(left, right) {
         }
     }
 
-    merged = [...merged, ...left, ...right];
-    return merged;
+    return [...merged, ...left, ...right];
 }
 
-module.exports = { bubbleSort, selectionSort, mergeSort, merge, insertionSort };
+function quickSort(arr, start = 0, end = arr.length - 1) {
+    if (start < end) {
+
+        let pivot = partition(arr, start, end);
+
+        quickSort(arr, start, pivot - 1);
+        quickSort(arr, pivot + 1, end);
+    }
+
+    return arr;
+}
+
+function partition(arr, start, end) {
+    let pivot = arr[end];
+    let p_idx = start;
+
+    for (let i = start; i < end; i++) {
+        if (arr[i] <= pivot) {
+            // swap a[i] and a[p_idx]
+            let temp = arr[i];
+            arr[i] = arr[p_idx];
+            arr[p_idx] = temp;
+
+            p_idx++;
+        }
+    }
+
+    // swap a[p_idx] and pivot
+    let temp = arr[p_idx];
+    arr[p_idx] = arr[end];
+    arr[end] = temp;
+
+    return p_idx;
+}
+
+module.exports = { bubbleSort, selectionSort, mergeSort, merge, quickSort };
